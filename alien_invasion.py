@@ -33,16 +33,17 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
 
-        # 游戏启动后处于活动状态
-        self.game_active = True
+        # 让游戏在一开始处于非活动状态
+        self.game_active = False
 
     def run_game(self):
         """开始游戏的主循环"""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
             self._update_screen()            
             self.clock.tick(60)
 
