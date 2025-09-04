@@ -126,6 +126,7 @@ class AlienInvasion:
             # 删除现有的所有子弹，并创建一个新的外星舰队
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _check_aliens_bottom(self):
         """检查是否有外星人到达了屏幕的下边缘"""
