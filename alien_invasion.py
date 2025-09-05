@@ -129,7 +129,8 @@ class AlienInvasion:
         
         # 每当有外星人被击落都更新得分
         if collisions:
-            self.stats.score += self.settings.alien_points
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
 
         if not self.aliens:
