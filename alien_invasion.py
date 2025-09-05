@@ -127,11 +127,12 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
         
-        # 每当有外星人被击落都更新得分
+        # 每当有外星人被击落都更新得分，并检查是否诞生新的最高分
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
+            self.sb.check_high_score()
 
         if not self.aliens:
             # 删除现有的所有子弹，并创建一个新的外星舰队
