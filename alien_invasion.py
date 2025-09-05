@@ -74,6 +74,7 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             # 重置游戏的统计信息
             self.stats.reset_stats()
+            self.sb.prep_score()
             self.game_active = True
             # 清空外星人列表和子弹列表
             self.bullets.empty()
