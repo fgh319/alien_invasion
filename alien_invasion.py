@@ -72,17 +72,22 @@ class AlienInvasion:
         if button_clicked and not self.game_active:
             # 还原游戏设置
             self.settings.initialize_dynamic_settings()
+
             # 重置游戏的统计信息
             self.stats.reset_stats()
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
             self.game_active = True
+
             # 清空外星人列表和子弹列表
             self.bullets.empty()
             self.aliens.empty()
+
             # 创建一个新的外星舰队，并将飞船放在屏幕底部的中央
             self._create_fleet()
             self.ship.center_ship()
+
             # 隐藏光标
             pygame.mouse.set_visible(False)
 
@@ -168,8 +173,9 @@ class AlienInvasion:
     def _ship_hit(self):
         """响应飞船和外星人的碰撞"""
         if self.stats.ships_left > 0:
-            # 将ships_left减1
+            # 将ships_left减1，并更新记分牌
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
             # 清空外星人列表和子弹列表
             self.bullets.empty()
             self.aliens.empty()
